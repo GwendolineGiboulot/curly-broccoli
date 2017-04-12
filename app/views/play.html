@@ -1,0 +1,90 @@
+<header>
+	<title>Partie en cours</title>
+</header>
+<style>
+	#pizzaJaune {
+		width : 20vw;
+		height : 20vw;
+		border-radius : 50%;
+		display: table-cell;
+		text-align: center;
+		margin-left : 25%;
+		background: linear-gradient(135deg, #fefcea 0%,#efe07c 9%,#efe28b 18%,#efe07f 36%,#fcf088 51%,#efebce 63%,#ede3a8 71%,#efe6a7 81%,#efe7b3 93%);
+		box-shadow: 10px 10px 5px #aaa;
+	}
+	#pizza ul li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+</style>
+
+<div class="container">
+	<div class ="row">
+		<div  class="col-xs-4">
+			<h2> Ingrédients </h2>
+
+			<ul id='toppings' class="list-group">
+				<li ng-repeat="topping in ctrl.listToppings track by $index" class="list-group-item">
+					<span ng-click="ctrl.addTopping(topping)">
+						{{topping}}
+					</span>
+				</li>
+			</ul>
+
+
+		</div>
+		<div class="col-xs-4" id="pizza">
+
+
+			<h3>Pizza en cours</h2>
+
+				<div ng-if="ctrl.currentPizza">
+					
+					<h4 class="text-center text-info">{{ctrl.currentPizza.recipe}}</h4>
+					
+
+					<div id='pizzaJaune'>
+
+						<ul id='inserted-toppings'>
+							<li ng-repeat="topping in ctrl.currentPizza.toppings track by $index">
+								{{topping}}
+							</li>
+
+						</ul>  
+
+					</div>
+
+					<div class="col-xs-4 col-xs-offset-4">
+						<input id='validPizza' type='button' class='btn btn-info' value='Valider Pizza' ng-click="ctrl.valider()">
+					</div>
+
+				</div>
+
+
+
+			</div>
+			<div id='commands' class="col-xs-4">
+
+
+				<h2> Commandes </h2>
+
+				<ul id='commands' class="list-group">
+					<li ng-repeat="commande in ctrl.PizzaService.getPizzas() track by $index" class="list-group-item">
+						<button ng-click="ctrl.selectCommand(commande)" class ='btn' ng-class="{'btn-danger': commande.status === 'wrong'}">
+							{{commande.recipe}}
+						</button>
+						<a ng-href="/recipe/{{commande.idRecette}}">
+							???
+						</a>
+
+
+					</li>
+
+
+				</ul>
+
+
+			</div>
+		</div>
+	</div>

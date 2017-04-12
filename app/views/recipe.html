@@ -1,0 +1,22 @@
+<h2>RECETTE DE PIZZA :</h2>
+
+
+<div class="jumbotron">
+	{{ ctrl.recipe.name}} :
+
+
+	<ul id='inserted-toppings'>
+		<li ng-repeat="topping in ctrl.recipe.toppings track by $index" class="list-group-item">
+			{{topping}}
+		</li>
+
+	</ul>  
+
+
+
+</div>
+<button  class ='btn btn-sucess'>
+	<a ng-href="/play" >
+		Retour
+	</a>
+</button>
